@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Test</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/require.js" data-main="scripts/main"></script>
+</head>
+<body>
+<p>Hello world!</p>
+<input type="button" id="triggerButton" value="Click me!"/>
+</body>
+<script type="text/javascript">
+    $('#triggerButton').click(function () {
+        var jq = require('jquery');
+        console.log(jq);
+
+        var module1 = require('modules/Module1');
+
+        require(['modules/Module3'], function (module3) {
+            console.log(module1.getUniqueModuleName() + ' was called from HTML file');
+            console.log(module3.getUniqueModuleName() + ' was called from HTML file');
+
+            var myNewStudent = module3.createStudent('John Wayne');
+            console.log(myNewStudent.getName());
+            console.log(myNewStudent.name);
+
+            var myNewStudent2 = module3.createStudent2('John Carter');
+            console.log(myNewStudent2.getName());
+            console.log(myNewStudent2.name);
+
+            var myNewStudent3 = module3.createStudent3('John Smith');
+            console.log(myNewStudent3.getName());
+            console.log(myNewStudent3.name);
+        })
+    });
+</script>
+</html>
